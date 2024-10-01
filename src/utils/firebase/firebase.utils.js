@@ -3,15 +3,15 @@ import {
   getAuth,
   signInWithRedirect,
   signInWithPopup,
-  GoogleAuthProvider 
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword as createUserWithEmailAndPasswordFromAuth,
 } from 'firebase/auth';
 import {
   getFirestore,
   doc,
   getDoc,
   setDoc
-} from 'firebase/firestore'
-
+} from 'firebase/firestore';
 
 const firebaseConfig = {
     apiKey: "AIzaSyDn3ajOPb7nrJi366LxcQDnyEArXS_rYYk",
@@ -20,20 +20,20 @@ const firebaseConfig = {
     storageBucket: "crwn-clothing-db-fa192.appspot.com",
     messagingSenderId: "277217686238",
     appId: "1:277217686238:web:12fbf559fa27c1a911884f"
-  };
+};
   
-  const firebaseApp = initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(firebaseConfig);
+const provider = new GoogleAuthProvider();
+export const auth = getAuth();
+export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+export const db = getFirestore();
 
-  const provider = new GoogleAuthProvider();
-  
-  export const auth = getAuth();
-  
-  export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+export const createUserDocumentFromAuth = async (
+  userAuth, 
+  additionalInformation = {displayName: 'mike'}
+) => {
+  if(!userAuth) return;
 
-  export const db = getFirestore();
-
-
-export const createUserDocumentFromAuth = async (userAuth) => {
   const userDocRef = doc(db, 'users', userAuth.uid);
 
   const userSnapshot = await getDoc(userDocRef);
@@ -46,14 +46,19 @@ export const createUserDocumentFromAuth = async (userAuth) => {
       await setDoc(userDocRef, {
         displayName,
         email,
-        createdAt
+        createdAt,
+        ...additionalInformation,
       });
     } catch (error) {
       console.log('error creating the user', error.message);
     }
   }
 
+  return userDocRef;
+};
 
-return userDocRef;
-  //return userDocRef
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+  
+  return await createUserWithEmailAndPasswordFromAuth(auth, email, password);
 };
