@@ -24,7 +24,7 @@ const Category = () => {
         ))}
     </div>
     </Fragment> 
-   );
+   ); 
 };
 
 export default Category;
