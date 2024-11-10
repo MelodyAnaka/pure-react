@@ -7,7 +7,8 @@
 6 silly config load:file:C:\Users\anaka\OneDrive\Desktop\PureReact\crwn-clothing\%APPDATA%npm\etc\npmrc
 7 verbose title npm start
 8 verbose argv "start"
-9 verbose logfile logs-max:10 dir:C:\Users\anaka\OneDrive\Desktop\PureReact\crwn-clothing\UsersanakaAppDataLocalnpm-cache\_logs\2024-10-22T16_18_12_203Z-
-10 verbose logfile C:\Users\anaka\OneDrive\Desktop\PureReact\crwn-clothing\UsersanakaAppDataLocalnpm-cache\_logs\2024-10-22T16_18_12_203Z-debug-0.log
+9 verbose logfile logs-max:10 dir:C:\Users\anaka\OneDrive\Desktop\PureReact\crwn-clothing\UsersanakaAppDataLocalnpm-cache\_logs\2024-11-06T02_49_12_971Z-
+10 verbose logfile C:\Users\anaka\OneDrive\Desktop\PureReact\crwn-clothing\UsersanakaAppDataLocalnpm-cache\_logs\2024-11-06T02_49_12_971Z-debug-0.log
 11 silly logfile start cleaning logs, removing 1 files
 12 silly logfile done cleaning log files
+13 http fetch GET 200 https://registry.npmjs.org/npm 2087ms
